@@ -1,0 +1,124 @@
+{
+    "users": [
+      {
+        "id": 1,
+        "name": "Alice Martin",
+        "username": "alice_martin",
+        "email": "alice.martin@example.com",
+        "password": "password123",
+        "phone": "+33 123 456 789",
+        "profilePicture": "https://i.pravatar.cc/150?img=1",
+        "bio": "Développeuse frontend passionnée par React et l'UX design. Aime le café et les voyages.",
+        "location": "Paris, France",
+        "website": "https://alice-martin.dev",
+        "createdAt": "2023-09-15T10:30:00Z",
+        "followers": 450,
+        "following": 320
+      },
+      {
+        "id": 2,
+        "name": "John DOE",
+        "username": "johndoe",
+        "email": "john.doe@example.com",
+        "password": "password123",
+        "phone": "+33 123 456 789",
+        "profilePicture": "https://i.pravatar.cc/150?img=2",
+        "bio": "Développeur passionné par le web et les API.",
+        "location": "Paris, France",
+        "website": "https://johndoe.com",
+        "createdAt": "2023-10-02T09:00:00Z",
+        "followers": 200,
+        "following": 180
+      },
+      {
+        "id": 3,
+        "name": "Sophie Dubois",
+        "username": "sophie_dev",
+        "email": "sophie.dubois@example.com",
+        "password": "securepass456",
+        "phone": "+33 987 654 321",
+        "profilePicture": "https://i.pravatar.cc/150?img=3",
+        "bio": "Full-stack developer | Tech enthusiast | Coffee lover ☕",
+        "location": "Lyon, France",
+        "website": "https://sophie-dev.fr",
+        "createdAt": "2023-08-20T14:15:00Z",
+        "followers": 680,
+        "following": 245
+      },
+      {
+        "id": 4,
+        "name": "Marc Leblanc",
+        "username": "marc_tech",
+        "email": "marc.leblanc@example.com",
+        "password": "mypassword789",
+        "phone": "+33 555 123 456",
+        "profilePicture": "https://i.pravatar.cc/150?img=4",
+        "bio": "DevOps Engineer | Cloud Architecture | Open Source contributor",
+        "location": "Marseille, France",
+        "website": "https://marctech.blog",
+        "createdAt": "2023-07-10T16:45:00Z",
+        "followers": 1200,
+        "following": 400
+      }
+    ],
+    "tweets": [
+      {
+        "id": 1,
+        "userId": 1,
+        "content": "Bonjour le monde ! Premier tweet sur ce nouveau clone de Twitter 🚀",
+        "media": [
+          {
+            "type": "image",
+            "url": "https://picsum.photos/400/300?random=1"
+          }
+        ],
+        "likes": 25,
+        "retweets": 8,
+        "replies": [ 2, 3 ],
+        "createdAt": "2023-10-01T12:00:00Z",
+        "replyTo": null,
+        "views": 1250
+      },
+      {
+        "id": 2,
+        "userId": 2,
+        "content": "@alice_martin Bienvenue sur Twitter ! J'espère que tu vas aimer l'expérience 😊",
+        "media": [],
+        "likes": 15,
+        "retweets": 3,
+        "replies": [],
+        "createdAt": "2023-10-01T12:30:00Z",
+        "replyTo": 1,
+        "views": 450
+      },
+      {
+        "id": 3,
+        "userId": 3,
+        "content": "@alice_martin Super ! J'ai hâte de voir tes prochains tweets sur le dev frontend 💻",
+        "media": [],
+        "likes": 8,
+        "retweets": 1,
+        "replies": [],
+        "createdAt": "2023-10-01T13:00:00Z",
+        "replyTo": 1,
+        "views": 320
+      },
+      {
+        "id": 4,
+        "userId": 3,
+        "content": "Journée productive ! J'ai enfin terminé ce projet React avec TypeScript. Les hooks custom sont vraiment puissants 🔥",
+        "media": [
+          {
+            "type": "image",
+            "url": "https://picsum.photos/400/300?random=2"
+          }
+        ],
+        "likes": 42,
+        "retweets": 12,
+        "replies": [ 5, 6 ],
+        "createdAt": "2023-10-01T18:20:00Z",
+        "replyTo": null,
+        "views": 2100
+      }
+    ]
+  }

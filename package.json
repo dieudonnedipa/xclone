@@ -1,0 +1,30 @@
+{
+  "name": "x-clone-api",
+  "version": "1.0.0",
+  "description": "API simulée pour un clone de Twitter utilisant JSON Server",
+  "main": "server.js",
+  "scripts": {
+    "server": "json-server --watch database/db.json --port 3000 --host 0.0.0.0",
+    "dev": "json-server --watch database/db.json --port 3000 --host 0.0.0.0 --delay 500",
+    "init-data": "node scripts/init-data.js",
+    "start": "npm run server"
+  },
+  "keywords": [
+    "json-server",
+    "api",
+    "twitter",
+    "clone",
+    "rest"
+  ],
+  "author": "Votre nom",
+  "license": "MIT",
+  "dependencies": {
+    "json-server": "^0.17.4"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

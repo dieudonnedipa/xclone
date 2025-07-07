@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil / X</title>
+    <!-- Le CSS de profile.css peut être fusionné avec feed.css plus tard, pour l'instant on garde séparé -->
+    <link rel="stylesheet" href="css/feed.css"> 
+    <link rel="stylesheet" href="css/profile.css">
+</head>
+<body>
+    <div class="main-container">
+        <!-- Sidebar est chargée ici mais n'est pas dynamique. C'est OK pour le moment. -->
+        <nav class="sidebar">
+             <div class="sidebar-content">
+                 <!-- Contenu de la sidebar statique, similaire à feed_x.html -->
+             </div>
+        </nav>
+        
+        <main class="main-content">
+            <div class="profile-header">
+                <button class="back-btn" onclick="window.history.back()" aria-label="Retour">←</button>
+                <div class="profile-info">
+                    <div class="profile-name" id="header-profile-name">Chargement...</div>
+                    <div class="profile-tweets-count" id="header-tweets-count"></div>
+                </div>
+            </div>
+            
+            <div class="cover-section" id="profile-cover">
+                 <div class="profile-avatar-container">
+                    <div class="profile-avatar" id="profile-avatar"></div>
+                </div>
+            </div>
+            
+            <div class="profile-actions">
+                <button class="action-btn">Suivre</button>
+            </div>
+            
+            <div class="profile-details">
+                <div class="profile-name" id="details-profile-name"></div>
+                <div class="profile-username" id="details-profile-username"></div>
+                <div class="profile-bio" id="details-profile-bio"></div>
+                <div class="profile-meta" id="details-profile-meta"></div>
+                <div class="profile-stats">
+                    <a href="#" class="stat-item"><span class="stat-number" id="following-count">0</span><span class="stat-label"> abonnements</span></a>
+                    <a href="#" class="stat-item"><span class="stat-number" id="followers-count">0</span><span class="stat-label"> abonnés</span></a>
+                </div>
+            </div>
+
+            <div class="profile-tabs">
+                <button class="tab-item active">Tweets</button>
+                <button class="tab-item">Réponses</button>
+                <button class="tab-item">Médias</button>
+                <button class="tab-item">J'aime</button>
+            </div>
+            
+            <div class="tweets-section" id="tweets-section"></div>
+        </main>
+
+        <!-- Pas de sidebar droite sur la page de profil pour simplifier -->
+    </div>
+    
+<script type="module" src="js/profile.js"></script>
+</body>
+</html>

@@ -1,55 +1,43 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // URL de l'API (assure-toi que ton json-server est bien lancé sur ce port)
     const API_URL = 'http://localhost:3000';
 
-    // --- Éléments du DOM ---
     const loginBtn = document.getElementById('loginBtn');
     const createAccountBtn = document.getElementById('createAccountBtn');
     const loginModal = document.getElementById('loginModal');
     const signupModal = document.getElementById('signupModal');
     const passwordModal = document.getElementById('passwordModal');
     
-    // Boutons de fermeture
     const closeLoginModalBtn = document.getElementById('closeModal');
     const closeSignupModalBtn = document.getElementById('closeSignupModal');
     const closePasswordModalBtn = document.getElementById('closePasswordModal');
 
-    // Navigation entre modales
     const backToSignupBtn = document.getElementById('backToSignup');
     const switchToLoginBtn = document.getElementById('switchToLogin');
     const switchToSignupBtn = document.getElementById('switchToSignup');
     
-    // Formulaires
     const loginForm = document.getElementById('loginForm');
     const signupForm = document.getElementById('signupForm');
     const passwordForm = document.getElementById('passwordForm');
     
-    // Inputs et boutons de soumission
     const emailInput = document.getElementById('emailInput');
     const passwordInput = document.getElementById('passwordInput');
     const loginSubmitBtn = document.getElementById('loginSubmitBtn');
     const signupNextBtn = document.getElementById('signupNextBtn');
     const createAccountFinalBtn = document.getElementById('createAccountFinalBtn');
 
-    // Données utilisateur temporaires pour l'inscription
     let tempUserData = {};
 
-    // --- FONCTIONS UTILITAIRES ---
-    
-    // Ouvre une modale
     const openModal = (modal) => {
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
     };
 
-    // Ferme une modale
     const closeModal = (modal) => {
         modal.classList.remove('active');
         document.body.style.overflow = 'auto';
     };
 
-    // Initialise les options de date de naissance
     const initializeBirthday = () => {
         const daySelect = document.getElementById('birthdayDay');
         const monthSelect = document.getElementById('birthdayMonth');
@@ -70,12 +58,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Génère un nom d'utilisateur simple à partir du nom complet
     const generateUsername = (fullName) => {
-        return fullName.toLowerCase().replace(/\s+/g, '_') + Math.floor(Math.random() * 1000);
+        return fullName.toLowerCase().replace(/\s+/g, '') + Math.floor(Math.random() * 1000);
     };
-
-    // --- GESTION DES MODALES ---
 
     loginBtn.addEventListener('click', () => openModal(loginModal));
     createAccountBtn.addEventListener('click', () => openModal(signupModal));
@@ -84,14 +69,11 @@ document.addEventListener('DOMContentLoaded', () => {
     closeSignupModalBtn.addEventListener('click', () => closeModal(signupModal));
     closePasswordModalBtn.addEventListener('click', () => closeModal(passwordModal));
     
-    // Fermer en cliquant sur l'overlay
     [loginModal, signupModal, passwordModal].forEach(modal => {
         modal.addEventListener('click', (e) => {
             if (e.target === modal) closeModal(modal);
         });
     });
-
-    // --- NAVIGATION ENTRE MODALES ---
 
     switchToLoginBtn.addEventListener('click', (e) => {
         e.preventDefault();
@@ -110,14 +92,13 @@ document.addEventListener('DOMContentLoaded', () => {
         openModal(signupModal);
     });
 
-    // --- LOGIQUE DE CONNEXION ---
-    
     const validateLoginForm = () => {
         loginSubmitBtn.disabled = !(emailInput.value.trim() && passwordInput.value.trim());
     };
     emailInput.addEventListener('input', validateLoginForm);
     passwordInput.addEventListener('input', validateLoginForm);
     
+    // --- BLOC DE CONNEXION CORRIGÉ ---
     loginForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const identifier = emailInput.value.trim();
@@ -127,24 +108,26 @@ document.addEventListener('DOMContentLoaded', () => {
         loginSubmitBtn.disabled = true;
 
         try {
-            // JSON Server permet de filtrer par n'importe quel champ
-            // On vérifie si un utilisateur correspond soit à l'email, soit au username
-            const response = await fetch(`${API_URL}/users?q=${identifier}&password=${password}`);
-            const users = await response.json();
+            // 1. Essayer de trouver l'utilisateur par email
+            let response = await fetch(`${API_URL}/users?email=${identifier}`);
+            let users = await response.json();
 
-            // On s'assure que la correspondance est exacte
-            const user = users.find(u => (u.email === identifier || u.username === identifier) && u.password === password);
+            // 2. Si non trouvé par email, essayer par username
+            if (users.length === 0) {
+                response = await fetch(`${API_URL}/users?username=${identifier}`);
+                users = await response.json();
+            }
 
-            if (user) {
-                // Connexion réussie
+            // 3. Vérifier si un utilisateur a été trouvé ET si le mot de passe correspond
+            if (users.length > 0 && users[0].password === password) {
+                const user = users[0];
                 alert(`Bienvenue, ${user.name} !`);
-                localStorage.setItem('twitterCloneUserId', user.id); // Sauvegarde de l'ID utilisateur
-                window.location.href = 'feed_x.html'; // Redirection vers le feed
+                localStorage.setItem('twitterCloneUserId', user.id);
+                window.location.href = 'accueil-x.html';
             } else {
-                // Échec de la connexion
                 alert('Identifiant ou mot de passe incorrect.');
                 loginSubmitBtn.textContent = 'Se connecter';
-                validateLoginForm();
+                validateLoginForm(); // Réactive le bouton si les champs sont remplis
             }
         } catch (error) {
             console.error('Erreur de connexion:', error);
@@ -153,10 +136,8 @@ document.addEventListener('DOMContentLoaded', () => {
             validateLoginForm();
         }
     });
+    // --- FIN DU BLOC CORRIGÉ ---
 
-    // --- LOGIQUE D'INSCRIPTION ---
-
-    // Étape 1: Collecte des infos
     const validateSignupForm = () => {
         const inputs = [
             document.getElementById('fullNameInput'),
@@ -182,7 +163,6 @@ document.addEventListener('DOMContentLoaded', () => {
             birthday: `${document.getElementById('birthdayYear').value}-${document.getElementById('birthdayMonth').value}-${document.getElementById('birthdayDay').value}`
         };
         
-        // Afficher le résumé des informations
         const summary = document.getElementById('userInfoSummary');
         summary.innerHTML = `
             <div class="user-info-item"><span class="user-info-label">Nom</span><span class="user-info-value">${tempUserData.name}</span></div>
@@ -193,7 +173,6 @@ document.addEventListener('DOMContentLoaded', () => {
         openModal(passwordModal);
     });
     
-    // Étape 2: Création du mot de passe et du compte
     const validatePasswordForm = () => {
         const password = document.getElementById('newPasswordInput').value;
         const confirmPassword = document.getElementById('confirmPasswordInput').value;
@@ -221,13 +200,14 @@ document.addEventListener('DOMContentLoaded', () => {
         createAccountFinalBtn.textContent = 'Création en cours...';
         createAccountFinalBtn.disabled = true;
 
+        const newId = Date.now();
         const newUser = {
             ...tempUserData,
-            id: Date.now(), // ID unique simple
+            id: newId,
             username: generateUsername(tempUserData.name),
             password: document.getElementById('newPasswordInput').value,
             createdAt: new Date().toISOString(),
-            profilePicture: `https://i.pravatar.cc/150?u=${Date.now()}`,
+            profilePicture: `https://i.pravatar.cc/150?u=${newId}`,
             bio: "",
             location: "",
             website: "",
@@ -246,7 +226,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const createdUser = await response.json();
                 alert('Compte créé avec succès !');
                 localStorage.setItem('twitterCloneUserId', createdUser.id);
-                window.location.href = 'feed_x.html';
+                window.location.href = 'accueil-x.html';
             } else {
                 throw new Error('La création du compte a échoué.');
             }
@@ -258,6 +238,5 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // --- INITIALISATION ---
     initializeBirthday();
 });

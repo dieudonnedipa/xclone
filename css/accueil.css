@@ -93,6 +93,7 @@ body {
     width: 100%;
     transition: background-color 0.2s ease;
     margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 .tweet-btn:hover {
@@ -411,7 +412,6 @@ body {
     color: #1d9bf0;
 }
 
-/* NOUVEAU STYLE POUR LE BOUTON RETWEET */
 .tweet-action.retweet-btn:hover {
     background-color: rgba(0, 186, 124, 0.1);
     color: #00ba7c;
@@ -544,4 +544,111 @@ body {
         margin-left: 0;
         border-right: none;
     }
+}
+
+/* === NOUVEAUX STYLES POUR LE WIDGET "À SUIVRE" === */
+
+/* Style pour chaque suggestion d'utilisateur */
+.follow-suggestion {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    gap: 0.75rem;
+    transition: background-color 0.2s ease;
+}
+
+.follow-suggestion:hover {
+    background-color: rgba(255, 255, 255, 0.03);
+}
+
+/* Avatar de l'utilisateur suggéré */
+.suggestion-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #333;
+    background-size: cover;
+    background-position: center;
+    flex-shrink: 0;
+}
+
+/* Conteneur pour le nom et le @username */
+.suggestion-user-info {
+    flex: 1;
+    overflow: hidden; /* Empêche le texte de déborder */
+}
+
+/* Lien pour le nom et l'avatar */
+.suggestion-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex: 1;
+    min-width: 0; /* Important pour le flexbox */
+}
+
+.suggestion-link:hover .suggestion-user-name {
+    text-decoration: underline;
+}
+
+/* Nom de l'utilisateur */
+.suggestion-user-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: #e7e9ea;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* @username de l'utilisateur */
+.suggestion-user-username {
+    font-size: 15px;
+    color: #71767b;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Bouton "Suivre" */
+.suggestion-follow-btn {
+    background-color: #e7e9ea;
+    color: #0f1419;
+    border: none;
+    border-radius: 50px;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    margin-left: auto; /* Pousse le bouton vers la droite */
+}
+
+.suggestion-follow-btn:hover {
+    background-color: #d7dbdc;
+}
+
+/* Pied de page du widget (lien "Voir plus") */
+.widget-footer {
+    padding: 1rem;
+    border-top: 1px solid #2f3336;
+    transition: background-color 0.2s ease;
+}
+.widget-footer:hover {
+    background-color: rgba(255, 255, 255, 0.03);
+}
+.widget-footer a {
+    color: #1d9bf0;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+/* ... tous les styles précédents ... */
+
+/* === AJOUT POUR LE STYLE DES VUES === */
+.tweet-action.views-btn:hover {
+    background-color: rgba(29, 155, 240, 0.1);
+    color: #1d9bf0;
 }

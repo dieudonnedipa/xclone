@@ -54,7 +54,7 @@
       "media": [
         {
           "type": "image",
-          "url": "https://example.com/image1.jpg"
+          "url": "https://picsum.photos/seed/tweet1/600/400"
         }
       ],
       "likedBy": [
@@ -65,7 +65,8 @@
       "replies": [
         3
       ],
-      "createdAt": "2023-10-01T12:00:00Z"
+      "createdAt": "2023-10-01T12:00:00Z",
+      "views": 24300
     },
     {
       "id": "2",
@@ -74,13 +75,14 @@
       "media": [
         {
           "type": "image",
-          "url": "https://example.com/image2.jpg"
+          "url": "https://picsum.photos/seed/tweet2/600/300"
         }
       ],
       "likedBy": [],
       "retweets": 10,
       "replies": [],
-      "createdAt": "2023-10-02T14:30:00Z"
+      "createdAt": "2023-10-02T14:30:00Z",
+      "views": 18700
     },
     {
       "id": "3",
@@ -91,7 +93,8 @@
       "retweets": 1,
       "replies": [],
       "createdAt": "2023-10-01T13:00:00Z",
-      "replyTo": 1
+      "replyTo": 1,
+      "views": 526
     },
     {
       "id": "1751902951898",
@@ -102,7 +105,8 @@
       "retweets": 0,
       "replies": [],
       "createdAt": "2025-07-07T15:42:31.898Z",
-      "replyTo": null
+      "replyTo": null,
+      "views": 15
     },
     {
       "id": "1751904824826",
@@ -113,7 +117,8 @@
       "retweets": 0,
       "replies": [],
       "createdAt": "2025-07-07T16:13:44.826Z",
-      "replyTo": null
+      "replyTo": null,
+      "views": 88
     },
     {
       "id": "1751954596153",
@@ -124,7 +129,8 @@
       "retweets": 0,
       "replies": [],
       "createdAt": "2025-07-08T06:03:16.153Z",
-      "replyTo": null
+      "replyTo": null,
+      "views": 42
     }
   ]
 }

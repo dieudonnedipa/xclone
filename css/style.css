@@ -536,3 +536,12 @@ select.form-input {
         margin-top: 1rem;
     }
 }
+
+select.form-input {
+    background-color: #000;
+}
+
+select.form-input option {
+    background-color: #16181c;
+    color: #e7e9ea;
+}
